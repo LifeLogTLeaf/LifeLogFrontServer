@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../LifeLogServer/src/main/main.iml" filepath="$PROJECT_DIR$/../LifeLogServer/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shack02.iml" filepath="$PROJECT_DIR$/shack02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../LifeLogServer/src/test/test.iml" filepath="$PROJECT_DIR$/../LifeLogServer/src/test/test.iml" />
+    </modules>
+  </component>
+</project>
+
