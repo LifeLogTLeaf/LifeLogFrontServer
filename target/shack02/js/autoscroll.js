@@ -4,25 +4,31 @@ jQuery(document).ready(function () {
 //    console.log("mills"+currentTimeMillis);
 //    var month = currentTimeMillis.getMonth()+1;
 //    console.log(month);
-    var link = 'locations';
+    var link = 'lifelogs';
+    $('#all').click(function() {
+        //페이지 리로딩
+//        location.reload();
+        $('#cards').remove();
+        link='lifelogs';
+
+    });
     $('#location').click(function() {
-        location.reload();
+            //페이지 리로딩
+//        location.reload();
+        $('#cards').remove();
         link='locations';
+
     });
     $('#photo').click(function() {
-        location.reload();
         link='photos';
     });
     $('#phone').click(function() {
-        location.reload();
         link='phones';
     });
     $('#bookmark').click(function() {
-        location.reload();
         link='bookmarks';
     });
     $('#sms').click(function() {
-        location.reload();
         link='smss';
     });
 
@@ -38,15 +44,16 @@ jQuery(document).ready(function () {
 
     function loadArticle(link,startNum,endNum) {
         $('#container').show('fast');//로딩화면 on
-        var urlLink = "http://54.191.147.237:8080/lifelog/api/"+link+"?userid=yoon";
+        var urlLink = "http://54.191.147.237:8080/lifelog/api/"+"lifelogs"+"?userid=jin";
         $.ajax({
 
             type:"GET",
             url:urlLink,
             contentType:"application/json",
+//            data:"userid=jin",
             async:true,
             success:function(list){
-
+//                console.log(data);
                 console.log(list);
 
                 var arrListData=list.data;
@@ -58,19 +65,19 @@ jQuery(document).ready(function () {
 
                 for(var i=0; i<arrCount; i++){
                     var arrData=arrListData[i];
-                    if(arrData.type=='bookmark'){
+                    if(arrData.logType=='bookmark'){
                         showBookmarkLayout(arrData);
 
-                    }else if(arrListData[i].type=='sms'){
+                    }else if(arrListData[i].logType=='sms'){
 
                         showSmsLayout(arrData);
-                    }else if(arrListData[i].type=='call'){
+                    }else if(arrListData[i].logType=='call'){
 
                         showCallLayout(arrData);
-                    }else if(arrListData[i].type=='location'){
+                    }else if(arrListData[i].logType=='location'){
 
                         showLocationLayout(arrData);
-                    }else if(arrListData[i].type=='photo'){
+                    }else if(arrListData[i].logType=='photo'){
 
                         showPhotoLayout(arrData);
                     }
@@ -85,7 +92,10 @@ jQuery(document).ready(function () {
             }
         })
         function showBookmarkLayout(arrData) {
-            var template = '<div class="panel panel-default"><div class="panel-thumbnail"><img src="/img/'+arrData.type+'.png" class="img-responsive"> </div> <div class="panel-body"> <p>'+arrData.logTime+ ' 분 전</p> <p class="lead">'+arrData.type+'</p> <p>장소 : '+arrData.latitude+', '+arrData.longitude+'</p> <p>'+arrData.title+' </p> <p>'+arrData.siteUrl+' </p> <hr> <form class="form-horizontal" role="form"> <p> <textarea class="form-control" rows="1" placeholder="메모입력"></textarea> </p> </form> </div></div>';
+            var time = new Date(arrData.logTime);
+            var template = '<div class="panel panel-default"><div class="panel-thumbnail"><img src="/img/'+arrData.type+'.png" class="img-responsive"> </div> <div class="panel-body"> <p>'+time+ ' 분</p> <p class="lead">'+arrData.type+'</p> <p>장소 : '+arrData.latitude+', '+arrData.longitude+'</p> <p>'+arrData.title+' </p> <p>'+arrData.siteUrl+' </p> <hr> <form class="form-horizontal" role="form"> <p> <textarea class="form-control" rows="1" placeholder="메모입력"></textarea> </p> </form> </div></div>';
+
+            console.log(time);
             $('#cards').append(template);
             return true;
         }
