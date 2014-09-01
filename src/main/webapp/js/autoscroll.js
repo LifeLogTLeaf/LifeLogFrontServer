@@ -1,9 +1,4 @@
 jQuery(document).ready(function () {
-//    var currentTimeMillis = new Date().getDate();
-//
-//    console.log("mills"+currentTimeMillis);
-//    var month = currentTimeMillis.getMonth()+1;
-//    console.log(month);
     var link = 'lifelogs';
     $('#all').click(function() {
         //섹션을 바꿀때마다 초기화 하여 데이터 리로딩 
