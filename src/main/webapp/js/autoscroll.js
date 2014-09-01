@@ -6,7 +6,7 @@ jQuery(document).ready(function () {
 //    console.log(month);
     var link = 'lifelogs';
     $('#all').click(function() {
-        //페이지 리로딩
+        //섹션을 바꿀때마다 초기화 하여 데이터 리로딩 
 //        location.reload();
         $('#cards').remove();
         link='lifelogs';
@@ -32,7 +32,7 @@ jQuery(document).ready(function () {
         link='smss';
     });
 
-
+//오토 스크롤을 감지 및 구현하는 부분
     $(window).scroll(function () {
         console.log($(document).height() + ", " + $(window).height() + " = " + $(window).scrollTop());
         if ($(window).scrollTop() == $(document).height() - $(window).height()) {
@@ -42,6 +42,7 @@ jQuery(document).ready(function () {
         }
     });
 
+//데이터를 ajax로 json데이터를 받아서 출력 해주는 함수
     function loadArticle(link,startNum,endNum) {
         $('#container').show('fast');//로딩화면 on
         var urlLink = "http://54.191.147.237:8080/lifelog/api/"+"lifelogs"+"?userid=jin";
